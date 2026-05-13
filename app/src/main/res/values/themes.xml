@@ -6,4 +6,8 @@
     </style>
 
     <style name="Theme.KFCRacing" parent="Base.Theme.KFCRacing" />
+
+    <style name="ShapeAppearanceOverlay.MaterialComponents.Circular" parent="">
+        <item name="cornerSize">50%</item>
+    </style>
 </resources>

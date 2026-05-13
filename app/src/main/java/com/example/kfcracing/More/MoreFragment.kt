@@ -1,60 +1,52 @@
 package com.example.kfcracing.More
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
+import android.widget.SimpleAdapter
+import android.widget.Toast
+import androidx.fragment.app.Fragment
 import com.example.kfcracing.R
+import com.example.kfcracing.databinding.FragmentMoreBinding
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+class MoreFragment : Fragment(R.layout.fragment_more) {
+    private var _binding: FragmentMoreBinding? = null
+    private val binding get() = _binding!!
 
-/**
- * A simple [Fragment] subclass.
- * Use the [MoreFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
-class MoreFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    private val dataListWithDesc = listOf(
+        mapOf("title" to "Kotlin", "desc" to "Bahasa untuk Android modern"),
+        mapOf("title" to "Java", "desc" to "Bahasa OOP yang populer"),
+        mapOf("title" to "Python", "desc" to "Bahasa yang mudah dipahami"),
+        mapOf("title" to "C++", "desc" to "Bahasa performa tinggi"),
+        mapOf("title" to "JavaScript", "desc" to "Bahasa untuk web"),
+        mapOf("title" to "Dart", "desc" to "Bahasa untuk Flutter"),
+        mapOf("title" to "Swift", "desc" to "Bahasa untuk iOS"),
+        mapOf("title" to "PHP", "desc" to "Bahasa backend web")
+    )
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        _binding = FragmentMoreBinding.bind(view)
+
+        val adapter = SimpleAdapter(
+            requireContext(),
+            dataListWithDesc,
+            android.R.layout.simple_list_item_2,
+            arrayOf("title", "desc"),
+            intArrayOf(android.R.id.text1, android.R.id.text2)
+        )
+
+        binding.listViewItems.adapter = adapter
+
+        binding.listViewItems.setOnItemClickListener { _, _, position, _ ->
+            val selectedItem = dataListWithDesc[position]
+            val title = selectedItem["title"]
+            val desc = selectedItem["desc"]
+            Toast.makeText(requireContext(), "Kamu memilih: $title ($desc)", Toast.LENGTH_SHORT).show()
         }
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_more, container, false)
-    }
-
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment MoreFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            MoreFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

@@ -1,13 +1,15 @@
 package com.example.kfcracing
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.fragment.app.Fragment
+import com.example.kfcracing.Home.HomeFragment
+import com.example.kfcracing.Massage.MassageFragment
+import com.example.kfcracing.More.MoreFragment
 import com.example.kfcracing.databinding.ActivityMainBinding
-import pertemuan_4.FourthActivity
 
 class MainActivity : AppCompatActivity() {
 
@@ -15,26 +17,32 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         enableEdgeToEdge()
-
-        ViewCompat.setOnApplyWindowInsetsListener(binding.root) { v, insets ->
+        ViewCompat.setOnApplyWindowInsetsListener(binding.main) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, 0)
             insets
         }
 
-        binding.btnToFourth.setOnClickListener {
-            val intent = Intent(this, FourthActivity::class.java)
+        // Set default fragment
+        replaceFragment(HomeFragment())
 
-            intent.putExtra("name", "Politeknik Caltex Riau")
-            intent.putExtra("from", "Rumbai")
-            intent.putExtra("age", 25)
-
-            startActivity(intent)
+        binding.bottomNavigation.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.nav_home -> replaceFragment(HomeFragment())
+                R.id.nav_message -> replaceFragment(MassageFragment())
+                R.id.nav_more -> replaceFragment(MoreFragment())
+            }
+            true
         }
+    }
+
+    private fun replaceFragment(fragment: Fragment) {
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.fragment_container, fragment)
+            .commit()
     }
 }
