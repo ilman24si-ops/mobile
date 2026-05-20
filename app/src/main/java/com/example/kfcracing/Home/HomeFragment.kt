@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.kfcracing.Home.pertemuan_9.NinthActivity
 import com.example.kfcracing.databinding.FragmentHomeBinding
+import pertemuan_10.TenthActivity
 
 class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
@@ -26,6 +27,11 @@ class HomeFragment : Fragment() {
 
         binding.btnPertemuan9.setOnClickListener {
             val intent = Intent(requireContext(), NinthActivity::class.java)
+            startActivity(intent)
+        }
+
+        binding.btnPertemuan10.setOnClickListener {
+            val intent = Intent(requireContext(), TenthActivity::class.java)
             startActivity(intent)
         }
     }
