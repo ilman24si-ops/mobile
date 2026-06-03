@@ -13,9 +13,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.KFCRacing">
+
+        <activity
+            android:name=".Massage.tutorial.TutorialMessageActivity"
+            android:exported="false" />
+
         <activity
             android:name="pertemuan_10.TenthActivity"
             android:exported="false" />
+
         <!-- Splash Screen as Launcher -->
         <activity
             android:name=".SplashScreenActivity"
@@ -26,12 +32,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".MainActivity"
             android:exported="false" />
+
         <activity
             android:name=".AuthActivity"
-            android:exported="false" /> <!-- Pertemuan activities -->
+            android:exported="false" />
+
+        <!-- Pertemuan activities -->
         <activity
             android:name="pertemuan_2.SecondActivity"
             android:exported="false" />
