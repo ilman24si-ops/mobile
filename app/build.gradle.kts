@@ -48,6 +48,12 @@ dependencies {
     implementation("androidx.recyclerview:recyclerview:1.3.2")
     implementation("com.github.bumptech.glide:glide:4.16.0")
     implementation("com.tbuonomo:dotsindicator:5.1.0")
+
+    // Retrofit using Version Catalog
+    implementation(libs.retrofit)
+    implementation(libs.retrofit.gson)
+    implementation(libs.kotlinx.coroutines.android)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
