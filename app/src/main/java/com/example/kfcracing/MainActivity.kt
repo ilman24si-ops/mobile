@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import com.example.kfcracing.Home.HomeFragment
 import com.example.kfcracing.Massage.MassageFragment
 import com.example.kfcracing.More.MoreFragment
+import com.example.kfcracing.note.NoteFragment
 import com.example.kfcracing.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -35,6 +36,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.nav_home -> replaceFragment(HomeFragment())
                 R.id.nav_message -> replaceFragment(MassageFragment())
                 R.id.nav_more -> replaceFragment(MoreFragment())
+                R.id.note -> replaceFragment(NoteFragment())
             }
             true
         }

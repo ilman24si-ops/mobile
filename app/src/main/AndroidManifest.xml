@@ -69,6 +69,9 @@
         <activity
             android:name=".Home.pertemuan_9.NinthActivity"
             android:exported="false" />
+        <activity
+            android:name=".note.NoteFormActivity"
+            android:exported="false" />
     </application>
 
 </manifest>
