@@ -61,6 +61,18 @@ dependencies {
     ksp("androidx.room:room-compiler:$room_version")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.8.7")
 
+    // ZXing for QR Code Generation
+    implementation("com.google.zxing:core:3.5.2")
+
+    // CameraX
+    val camerax_version = "1.3.3"
+    implementation("androidx.camera:camera-camera2:$camerax_version")
+    implementation("androidx.camera:camera-lifecycle:$camerax_version")
+    implementation("androidx.camera:camera-view:$camerax_version")
+
+    // ML Kit for QR code
+    implementation("com.google.mlkit:barcode-scanning:17.2.0")
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

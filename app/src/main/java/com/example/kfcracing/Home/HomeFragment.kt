@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.kfcracing.Home.pertemuan_13.ThirteenthActivity
 import com.example.kfcracing.Home.pertemuan_9.NinthActivity
 import com.example.kfcracing.Home.photo.PhotoAdapter
 import com.example.kfcracing.data.api.CatFactApiClient
@@ -39,6 +40,11 @@ class HomeFragment : Fragment() {
 
         binding.btnPertemuan10.setOnClickListener {
             val intent = Intent(requireContext(), TenthActivity::class.java)
+            startActivity(intent)
+        }
+
+        binding.btnPertemuan13.setOnClickListener {
+            val intent = Intent(requireContext(), ThirteenthActivity::class.java)
             startActivity(intent)
         }
 
