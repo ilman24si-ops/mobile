@@ -17,6 +17,7 @@ import com.example.kfcracing.data.api.PhotoApiClient
 import com.example.kfcracing.databinding.FragmentHomeBinding
 import kotlinx.coroutines.launch
 import pertemuan_10.TenthActivity
+import pertemuan_3.ThirdActivity
 
 class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
@@ -32,6 +33,11 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding.btnPertemuan3.setOnClickListener {
+            val intent = Intent(requireContext(), ThirdActivity::class.java)
+            startActivity(intent)
+        }
 
         binding.btnPertemuan9.setOnClickListener {
             val intent = Intent(requireContext(), NinthActivity::class.java)
