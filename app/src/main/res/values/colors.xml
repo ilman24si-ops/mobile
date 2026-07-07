@@ -2,11 +2,15 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="bg_light">#F5F5F5</color>
-    <color name="mandiri_blue">#003D79</color>
-    <color name="gray_text">#757575</color>
-    <color name="bgBaru">#FFFFFF</color>
-    <color name="abu_gelap">#757575</color>
-    <color name="purple_primary">#673AB7</color>
-    <color name="tab_background">#F8F4FF</color>
+    <color name="primary">#2E7D32</color>
+    <color name="primary_light">#60AD5E</color>
+    <color name="primary_dark">#005005</color>
+    <color name="accent">#FFA000</color>
+    <color name="background">#F5F5F5</color>
+    <color name="surface">#FFFFFF</color>
+    <color name="text_primary">#212121</color>
+    <color name="text_secondary">#757575</color>
+    <color name="status_planned">#FF9800</color>
+    <color name="status_ongoing">#2196F3</color>
+    <color name="status_completed">#4CAF50</color>
 </resources>

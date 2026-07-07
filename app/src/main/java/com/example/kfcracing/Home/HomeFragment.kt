@@ -1,23 +1,14 @@
-package com.example.kfcracing.Home
+package com.example.kfcracing.home
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.kfcracing.Home.pertemuan_13.ThirteenthActivity
-import com.example.kfcracing.Home.pertemuan_9.NinthActivity
-import com.example.kfcracing.Home.photo.PhotoAdapter
-import com.example.kfcracing.data.api.CatFactApiClient
-import com.example.kfcracing.data.api.PhotoApiClient
+import com.example.kfcracing.data.AppDatabase
 import com.example.kfcracing.databinding.FragmentHomeBinding
 import kotlinx.coroutines.launch
-import pertemuan_10.TenthActivity
-import pertemuan_3.ThirdActivity
 
 class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
@@ -33,56 +24,15 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        binding.btnPertemuan3.setOnClickListener {
-            val intent = Intent(requireContext(), ThirdActivity::class.java)
-            startActivity(intent)
-        }
-
-        binding.btnPertemuan9.setOnClickListener {
-            val intent = Intent(requireContext(), NinthActivity::class.java)
-            startActivity(intent)
-        }
-
-        binding.btnPertemuan10.setOnClickListener {
-            val intent = Intent(requireContext(), TenthActivity::class.java)
-            startActivity(intent)
-        }
-
-        binding.btnPertemuan13.setOnClickListener {
-            val intent = Intent(requireContext(), ThirteenthActivity::class.java)
-            startActivity(intent)
-        }
-
-        binding.btnRefresh.setOnClickListener {
-            loadCatFact()
-        }
-
-        loadCatFact()
-        loadPhoto()
+        updateStats()
     }
 
-    private fun loadCatFact() {
+    private fun updateStats() {
+        val db = AppDatabase.getInstance(requireContext())
         lifecycleScope.launch {
-            try {
-                val response = CatFactApiClient.apiService.getCatFact()
-                binding.tvCatFact.text = "\"${response.fact}\""
-            } catch (e: Exception) {
-                binding.tvCatFact.text = "Gagal mengambil fakta kucing."
-            }
-        }
-    }
-
-    private fun loadPhoto() {
-        lifecycleScope.launch {
-            try {
-                val photos = PhotoApiClient.apiService.getPhotos()
-                val adapter = PhotoAdapter(photos)
-                binding.rvGallery.adapter = adapter
-                binding.rvGallery.layoutManager = LinearLayoutManager(requireContext())
-            } catch (e: Exception) {
-                Toast.makeText(requireContext(), "Gagal memuat gambar", Toast.LENGTH_SHORT).show()
-            }
+            val allProjects = db.pembangunanDao().getAll()
+            binding.tvTotalProjects.text = allProjects.size.toString()
+            binding.tvCompletedProjects.text = allProjects.count { it.status.contains("Selesai", ignoreCase = true) }.toString()
         }
     }
 

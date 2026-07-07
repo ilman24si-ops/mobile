@@ -26,7 +26,7 @@ object ReminderHelper {
                 add(Calendar.DAY_OF_MONTH, 1)
             }
         }
-
+				
         val intent = Intent(context, ReminderReceiver::class.java).apply {
             putExtra("title", title)
             putExtra("message", message)
@@ -46,6 +46,36 @@ object ReminderHelper {
         alarmManager.setExactAndAllowWhileIdle(
             AlarmManager.RTC_WAKEUP,
             calendar.timeInMillis,
+            pendingIntent
+        )
+    }
+
+    fun setReminderInMinutes(
+        context: Context,
+        minutes: Int,
+        title: String,
+        message: String,
+        targetActivity: Class<*>
+    ) {
+        val triggerTime = Calendar.getInstance().timeInMillis + (minutes * 60 * 1000)
+        
+        val intent = Intent(context, ReminderReceiver::class.java).apply {
+            putExtra("title", title)
+            putExtra("message", message)
+            putExtra("target_activity", targetActivity.name)
+        }
+
+        val pendingIntent = PendingIntent.getBroadcast(
+            context,
+            System.currentTimeMillis().toInt(),
+            intent,
+            PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+        )
+
+        val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
+        alarmManager.setExactAndAllowWhileIdle(
+            AlarmManager.RTC_WAKEUP,
+            triggerTime,
             pendingIntent
         )
     }

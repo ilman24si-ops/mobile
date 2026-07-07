@@ -4,16 +4,19 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.example.kfcracing.data.dao.NoteDao
-import com.example.kfcracing.data.entity.NoteEntity
+import com.example.kfcracing.data.dao.PembangunanDao
+import com.example.kfcracing.data.dao.UserDao
+import com.example.kfcracing.data.entity.PembangunanEntity
+import com.example.kfcracing.data.entity.UserEntity
 
 @Database(
-    entities = [NoteEntity::class],
-    version = 1
+    entities = [PembangunanEntity::class, UserEntity::class],
+    version = 3
 )
 abstract class AppDatabase : RoomDatabase() {
 
-    abstract fun noteDao(): NoteDao
+    abstract fun pembangunanDao(): PembangunanDao
+    abstract fun userDao(): UserDao
 
     companion object {
         @Volatile
@@ -24,7 +27,7 @@ abstract class AppDatabase : RoomDatabase() {
                 Room.databaseBuilder(
                     context.applicationContext,
                     AppDatabase::class.java,
-                    "app_database"
+                    "bina_desa_db"
                 )
                     .fallbackToDestructiveMigration()
                     .build().also { INSTANCE = it }

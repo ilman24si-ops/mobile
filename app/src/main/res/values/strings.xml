@@ -1,6 +1,12 @@
 <resources>
-    <string name="app_name">KFCRacing</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="judulBaru">Judul Baru</string>
-    <string name="anakJudul">Anak Judul</string>
+    <string name="app_name">Bina Desa</string>
+    <string name="title_home">Beranda</string>
+    <string name="title_pembangunan">Pembangunan</string>
+    <string name="title_pesan">Pesan</string>
+    <string name="title_profil">Profil</string>
+    <string name="title_pembangunan_desa">Pembangunan Desa</string>
+    <string name="label_nama_proyek">Nama Proyek</string>
+    <string name="label_lokasi">Lokasi</string>
+    <string name="label_anggaran">Anggaran</string>
+    <string name="label_status">Status</string>
 </resources>
